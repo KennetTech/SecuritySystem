@@ -7,7 +7,7 @@ body_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_fullbo
 
 video_capture = cv2.VideoCapture(0)
 
-class CameraAdaptor:
+class Camera:
     def __init__(self):
         self.detection = False
         self.detection_stopped_time = None
