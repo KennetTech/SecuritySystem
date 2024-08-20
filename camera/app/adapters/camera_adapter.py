@@ -41,7 +41,7 @@ def detectAndCapture(self, frame):
     faces = face_cascade.detectMultiScale(grey, 1.3, 5)
     bodies = body_cascade.detectMultiScale(grey, 1.3, 5)
     
-    fourcc = cv2.VideoWriter_fourcc(*'MP4V')
+    fourcc = cv2.VideoWriter_fourcc(*'mp4v')
 
     frame_size = (int(video_capture.get(3)), int(video_capture.get(4))) 
 
@@ -60,6 +60,7 @@ def detectAndCapture(self, frame):
                 self.timer_started = False
                 self.out.release()
                 print("stopped Recording!")
+                handle_detection()
         else:
             self.timer_started = True
             self.detection_stopped_time = time.time()
