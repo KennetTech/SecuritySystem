@@ -8,18 +8,10 @@ from fastapi import FastAPI
 
 app = FastAPI()
 
-# Load environment variables
-load_dotenv()
 
-# Retrieve environment variables
-RABBITMQ_URL = os.environ.get("RABBITMQ_URL")
+rabbit = RabbitMQAdapter()
 
-# connect to rabbitmq
-params = pika.URLParameters(RABBITMQ_URL)
-connection = pika.BlockingConnection(params)
-channel = connection.channel()
-channel.queue_declare(queue='videofeedservice')
-
+# rabbit.publish_message('Hello from Camera service!')
 
 # starting camera module to record intruders
 ##camera = Camera()
