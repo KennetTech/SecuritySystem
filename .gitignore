@@ -1,4 +1,3 @@
-.toml
-.lock
-.mp4
-backend/poetry.lock
+*.toml
+*.lock
+*.mp4
