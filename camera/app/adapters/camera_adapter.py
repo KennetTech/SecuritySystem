@@ -1,11 +1,16 @@
 import cv2
 import datetime
 import time
+from app.adapters.rabbitmq_adapter import RabbitMQAdapter
 
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
 body_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_fullbody.xml")
 
 video_capture = cv2.VideoCapture(0)
+
+# Starting RabbitMQ adapter to communicate with backend
+
+rabbit = RabbitMQAdapter()
 
 class Camera:
     def __init__(self):
@@ -60,7 +65,7 @@ def detectAndCapture(self, frame):
                 self.timer_started = False
                 self.out.release()
                 print("stopped Recording!")
-                handle_detection()
+                rabbit.publish_message("VideoFileID")
         else:
             self.timer_started = True
             self.detection_stopped_time = time.time()
